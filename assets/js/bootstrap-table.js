@@ -611,15 +611,17 @@
             row._data = getRealDataAttr($(this).data());
 
             $(this).find('td').each(function (i) {
-                var field = that.columns[i].field;
+                if (that.columns[i]) {
+                    var field = that.columns[i].field;
 
-                row[field] = $(this).html();
-                // save td's id, class and data-* attributes
-                row['_' + field + '_id'] = $(this).attr('id');
-                row['_' + field + '_class'] = $(this).attr('class');
-                row['_' + field + '_rowspan'] = $(this).attr('rowspan');
-                row['_' + field + '_title'] = $(this).attr('title');
-                row['_' + field + '_data'] = getRealDataAttr($(this).data());
+                    row[field] = $(this).html();
+                    // save td's id, class and data-* attributes
+                    row['_' + field + '_id'] = $(this).attr('id');
+                    row['_' + field + '_class'] = $(this).attr('class');
+                    row['_' + field + '_rowspan'] = $(this).attr('rowspan');
+                    row['_' + field + '_title'] = $(this).attr('title');
+                    row['_' + field + '_data'] = getRealDataAttr($(this).data());
+                }
             });
             data.push(row);
         });
